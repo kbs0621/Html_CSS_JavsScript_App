@@ -47,19 +47,14 @@ studentForm.addEventListener("submit", function (event) {
     //유효한 데이터 출력하기
     console.log(studentData);
 
-    //현재 수정중인 학생 Id가 있으면 수정처리
-    if(editingStudentId){
-        //서버로 Student 수정 요청
+    //현재 수정중인 학생Id가 있으면 수정처리
+    if (editingStudentId) {
+        //서버로 Student 수정 요청하기
         updateStudent(editingStudentId, studentData);
-    } 
-    else {
-        //서버로 Student 등록 요청
-
-
+    } else {
+        //서버로 Student 등록 요청하기
+        createStudent(studentData);
     }
-
-    //서버로 Student 등록 요청하기
-    createStudent(studentData);
 
 }); //submit 이벤트
 
@@ -77,7 +72,7 @@ function createStudent(studentData) {
                 //status code와 message를 확인하기
                 if (response.status === 409) {
                     //중복 오류 처리
-                    throw new Error(`${errorData.message}(에러코드 : ${errorData.statusCode})` || '중복 되는 정보가 있습니다.');
+                    throw new Error(errorData.message || '중복 되는 정보가 있습니다.');
                 } else {
                     //기타 오류 처리
                     throw new Error(errorData.message || '학생 등록에 실패했습니다.')
@@ -174,12 +169,13 @@ function updateStudent(studentId, studentData) {
     })
         .then(async (response) => {
             if (!response.ok) {
-                //응답 본문을 읽어서 에러 메시지 추출
+                //응답 본문을 읽어서 에러 메시지 추출 
+                //errorData 객체는 서버의 ErrorObject와 매핑이 된다.
                 const errorData = await response.json();
                 //status code와 message를 확인하기
                 if (response.status === 409) {
                     //중복 오류 처리
-                    throw new Error(errorData.message || '중복 되는 정보가 있습니다.');
+                    throw new Error(`${errorData.message} ( 에러코드: ${errorData.statusCode} )` || '중복 되는 정보가 있습니다.');
                 } else {
                     //기타 오류 처리
                     throw new Error(errorData.message || '학생 수정에 실패했습니다.')
@@ -189,7 +185,7 @@ function updateStudent(studentId, studentData) {
         })
         .then((result) => {
             alert("학생이 성공적으로 수정되었습니다!");
-            //등록모드로 초기화
+            //등록모드로 전환
             resetForm();
             //목록 새로 고침
             loadStudents();
@@ -284,7 +280,8 @@ function loadStudents() {
         .then((students) => renderStudentTable(students))
         .catch((error) => {
             console.log(error);
-            alert(">>> 학생 목록을 불러오는데 실패했습니다!.");
+            //alert(">>> 학생 목록을 불러오는데 실패했습니다!.");
+            showError("학생 목록을 불러오는데 실패했습니다!.");
         });
 };
 
@@ -313,3 +310,20 @@ function renderStudentTable(students) {
         studentTableBody.appendChild(row);
     });
 }//renderStudentTable
+
+//성공 메시지 출력
+function showSuccess(message) {
+    formErrorSpan.textContent = message;
+    formErrorSpan.style.display = 'block';
+    formErrorSpan.style.color = '#28a745';
+}
+//에러 메시지 출력
+function showError(message) {
+    formErrorSpan.textContent = message;
+    formErrorSpan.style.display = 'block';
+    formErrorSpan.style.color = '#dc3545';
+}
+//메시지 초기화
+function clearMessages() {
+    formErrorSpan.style.display = 'none';
+}
