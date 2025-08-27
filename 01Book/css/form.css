@@ -43,16 +43,34 @@ input {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: rgb(23, 189, 23);
+    /* 버튼 배경색을 파란색으로 설정 */
     color: white;
-    padding: 10px 20px;     
+    /* 버튼 텍스트 색상을 흰색으로 설정 */
+    padding: 10px 20px;
+    /* 버튼 안쪽 여백: 위아래 10px, 좌우 20px */
     border: none;
+    /* 버튼의 기본 테두리 제거 */
     border-radius: 3px;
+    /* 버튼 모서리를 3픽셀만큼 둥글게 만듦 */
     cursor: pointer;
+    /* 마우스 커서를 손가락 모양으로 변경 */
 }
-
 button:hover {
     background-color: #45a049;
+}
+
+.button-group {
+    margin-top: 15px;
+    /* 위쪽 여백 */
+    display: flex;
+    /* 플렉스 레이아웃 사용 */
+    align-items: center;
+    /* 수직 중앙 정렬 */
+    flex-wrap: wrap;
+    /* 화면이 작을 때 줄바꿈 허용 */
+    gap: 10px;
+    /* 요소들 간의 간격 */
 }
 
 table {

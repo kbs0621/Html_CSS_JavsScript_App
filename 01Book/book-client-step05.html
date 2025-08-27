@@ -10,27 +10,40 @@
 <body>
     <h1>도서 관리 시스템</h1>
     
-    <div>
-        <h2>도서 등록</h2>
-        <form>
-            <label>제목:</label>
-            <input type="text" name="title">
-            
-            <label>저자:</label>
-            <input type="text" name="author">
-            
-            <label>ISBN:</label>
-            <input type="text" name="isbn">
-            
-            <label>가격:</label>
-            <input type="number" name="price">
-            
-            <label>출판일:</label>
-            <input type="date" name="publishDate">
-            
-            <button type="submit">도서 등록</button>
-        </form>
+    <div class="form-container">
+      <h2>도서 등록</h2>
+      <form id="bookForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="title">제목:</label>
+            <input type="text" name="title" id="title" />
+          </div>
+
+          <div class="form-group">
+            <label for="author">저자:</label>
+            <input type="text" name="author" id="author" />
+          </div>
+          
+          <div class="form-group">
+            <label for="isbn">ISBN:</label>
+            <input type="text" name="isbn" id="isbn" />
+          </div>
+          
+          <div class="form-group">
+            <label for="price">가격:</label>
+            <input type="text" name="price" id="price"/>
+          </div>
+          
+          <div class="form-group">
+            <label for="publishDate">출판일:</label>
+            <input type="date" name="publishDate" id="publishDate"/>
+          </div>
+          
+          <button type="submit">도서 등록</button>
+        </div>
+      </form>
     </div>
+
     
     <div class="table-container">
         <h2>도서 목록</h2>
@@ -45,10 +58,11 @@
                     <th>액션</th>
                 </tr>
             </thead>
-            <tbody id="bookTableBody"></tbody>
+            <tbody id="bookTableBody">
+            </tbody>
         </table>
     </div>
+
     <script src="./js/form.js"></script>
 </body>
-
 </html>
