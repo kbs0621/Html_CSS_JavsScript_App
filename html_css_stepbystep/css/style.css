@@ -1,24 +1,137 @@
-﻿body {
-    font-family: "맑은 고딕", "돋움", "굴림";               
-    /*
-    background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment
-       bg-images : url('../images/bg.jpg') 
-       bg-repeat : no-repeat : 
-       bg-position (배경 위치) : left(가로위치-왼쪽) top(세로위치-상단) : 
-       bg-attachment (배경 고정) : fixed 페이지를 스크롤해도 배경은 움직이지 않음
-    */
-    
-    /*
-    background-size
-    : cover
-        비율 유지하며 요소 전체를 덮음
-        이미지 일부가 잘릴 수 있음
-        풀스크린 배경에 최적
-    : contain
-        비율 유지하며 요소 안에 완전 포함
-        여백이 생길 수 있음
-        로고, 아이콘에 최적
-    */
-    
+﻿/* 전체 페이지 */
+body {
+    margin: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    background: url('../images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
 }
 
+/* 래퍼 */
+#wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 헤더 */
+header {
+    text-align: left;
+    padding: 20px 40px;
+    color: #fff;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+/* 네비게이션 */
+nav {
+    background-color: #111;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 14px 24px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    background-color: #444;
+}
+
+nav ul li a.current {
+    background-color: #fff;
+    color: #111;
+}
+
+/* 본문 섹션 */
+section {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.92);
+    margin: 30px auto;
+    padding: 30px;
+    width: 70%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* 제목 */
+article h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+article h2::before {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    vertical-align: middle;
+
+    background: url("../images/icon.png") no-repeat center center;
+    background-size: contain;
+}
+
+/* 표 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #fff;
+}
+
+caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    width: 80px;
+    background-color: gray;
+    font-weight: bold;
+    text-align: center;
+}
+
+tr:nth-child(even) td {
+    background-color: #fafafa;
+}
+
+/* 푸터 */
+footer {
+    background-color: #333;
+    color: #eee;
+    font-size: 0.9em;
+    padding: 15px 20px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+footer address {
+    font-style: normal;
+    margin-top: 5px;
+    display: block;
+}
